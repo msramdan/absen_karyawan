@@ -135,10 +135,10 @@
 							<div class="menu-profile-info">
 								<div class="d-flex align-items-center">
 									<div class="flex-grow-1">
-										<?= ucfirst($this->fungsi->user_login()->nama_user) ?>
+										<?= ucfirst($this->fungsi->user_login()->username) ?>
 									</div>
 								</div>
-								<small><?= ucfirst($this->fungsi->user_login()->email) ?></small>
+								<small>Jabatan <?= levelUser(ucfirst($this->fungsi->user_login()->level)) ?></small>
 							</div>
 						</a>
 					</div>

@@ -29,10 +29,8 @@
 										<tr class="table-secondary">
 											<th width="1%">No</th>
 											<th width="1%" data-orderable="false">Photo</th>
-											<th>Nama User</th>
 											<th>Username</th>
 											<th>Level</th>
-											<th>Email</th>
 											<th>Action</th>
 										</tr>
 									</thead>
@@ -42,19 +40,17 @@
 											<tr>
 												<td><?= $no++ ?></td>
 												<td class="with-img">
-													<a id="view_gambar" href="#modal-dialog" data-bs-toggle="modal" data-photo="<?php echo $user->photo ?>" data-nama_user="<?php echo $user->nama_user ?>">
+													<a id="view_gambar" href="#modal-dialog" data-bs-toggle="modal" data-photo="<?php echo $user->photo ?>" data-username="<?php echo $user->username ?>">
 														<img src="<?= base_url() ?>assets/assets/img/user/<?php echo $user->photo ?>" class="rounded h-30px my-n1 mx-n1" />
 												</td>
 												</a>
-												<td><?php echo $user->nama_user ?></td>
 												<td><?php echo $user->username ?></td>
 												<td><?php echo $user->level ?></td>
-												<td><?php echo $user->email ?></td>
 												<td style="text-align:center" width="200px">
 													<?php
-													echo anchor(site_url('user/update/' . $user->user_id), '<i class="fas fa-pencil-alt" aria-hidden="true"></i>', 'class="btn btn-primary btn-sm update_data"');
+													echo anchor(site_url('user/update/' . $user->id), '<i class="fas fa-pencil-alt" aria-hidden="true"></i>', 'class="btn btn-primary btn-sm update_data"');
 													echo '  ';
-													echo anchor(site_url('user/delete/' . $user->user_id), '<i class="fas fa-trash-alt" aria-hidden="true"></i>', 'class="btn btn-danger btn-sm delete_data" Delete', 'onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
+													echo anchor(site_url('user/delete/' . $user->id), '<i class="fas fa-trash-alt" aria-hidden="true"></i>', 'class="btn btn-danger btn-sm delete_data" Delete', 'onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
 													?>
 												</td>
 											</tr>
@@ -90,9 +86,9 @@
 </div>
 <script type="text/javascript">
 	$(document).on('click', '#view_gambar', function() {
-		var nama_user = $(this).data('nama_user');
+		var username = $(this).data('username');
 		var photo = $(this).data('photo');
-		$('#modal-dialog #cuts').text(nama_user);
+		$('#modal-dialog #cuts').text(username);
 		$('#modal-dialog #photo_user').attr("src", "assets/assets/img/user/" + photo);
 		$('#modal-dialog #download').attr("href", "user/download/" + photo);
 	})

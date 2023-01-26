@@ -29,11 +29,9 @@ class User extends CI_Controller
 			$data = array(
 				'button' => 'Update',
 				'action' => site_url('user/update_profile'),
-				'user_id' => set_value('user_id', $row->user_id),
+				'id' => set_value('id', $row->id),
 				'level' => set_value('level', $row->level),
-				'nama_user' => set_value('nama_user', $row->nama_user),
 				'username' => set_value('username', $row->username),
-				'email' => set_value('email', $row->email),
 				'photo' => set_value('photo', $row->photo),
 			);
 			$this->template->load('template', 'user/edit_profile', $data);
@@ -48,12 +46,10 @@ class User extends CI_Controller
 		$data = array(
 			'button' => 'Create',
 			'action' => site_url('user/create_action'),
-			'user_id' => set_value('user_id'),
-			'nama_user' => set_value('nama_user'),
+			'id' => set_value('id'),
 			'username' => set_value('username'),
 			'password' => set_value('password'),
 			'level' => set_value('level'),
-			'email' => set_value('email'),
 			'photo' => set_value('photo'),
 		);
 		$this->template->load('template', 'user/user_form', $data);
@@ -80,11 +76,9 @@ class User extends CI_Controller
 
 
 			$data = array(
-				'nama_user' => $this->input->post('nama_user', TRUE),
 				'username' => $this->input->post('username', TRUE),
 				'password' => sha1($this->input->post('password', TRUE)),
 				'level' => $this->input->post('level', TRUE),
-				'email' => $this->input->post('email', TRUE),
 				'photo' => $photo,
 
 			);
@@ -102,12 +96,10 @@ class User extends CI_Controller
 			$data = array(
 				'button' => 'Update',
 				'action' => site_url('user/update_action'),
-				'user_id' => set_value('user_id', $row->user_id),
-				'nama_user' => set_value('nama_user', $row->nama_user),
+				'id' => set_value('id', $row->id),
 				'username' => set_value('username', $row->username),
 				'password' => set_value('password', $row->password),
 				'level' => set_value('level', $row->level),
-				'email' => set_value('email', $row->email),
 				'photo' => set_value('photo', $row->photo),
 			);
 			$this->template->load('template', 'user/user_form', $data);
@@ -121,7 +113,7 @@ class User extends CI_Controller
 	{
 		$this->_rules();
 		if ($this->form_validation->run() == FALSE) {
-			$this->update($this->input->post('user_id', TRUE));
+			$this->update($this->input->post('id', TRUE));
 		} else {
 
 			$config['upload_path']      = './assets/assets/img/user';
@@ -132,7 +124,7 @@ class User extends CI_Controller
 			$this->upload->initialize($config);
 
 			if ($this->upload->do_upload("photo")) {
-				$id = $this->input->post('user_id');
+				$id = $this->input->post('id');
 				$row = $this->User_model->get_by_id($id);
 				$data = $this->upload->data();
 				$photo = $data['file_name'];
@@ -148,26 +140,22 @@ class User extends CI_Controller
 
 			if ($this->input->post('password') == '' || $this->input->post('password') == null) {
 				$data = array(
-					'nama_user' => $this->input->post('nama_user', TRUE),
 					'username' => $this->input->post('username', TRUE),
 					'level' => $this->input->post('level', TRUE),
-					'email' => $this->input->post('email', TRUE),
 					'photo' => $photo,
 				);
 			} else {
 				$data = array(
-					'nama_user' => $this->input->post('nama_user', TRUE),
 					'username' => $this->input->post('username', TRUE),
 					'password' => sha1($this->input->post('password', TRUE)),
 					'level' => $this->input->post('level', TRUE),
-					'email' => $this->input->post('email', TRUE),
 					'photo' => $photo,
 				);
 			}
 
 
 
-			$this->User_model->update($this->input->post('user_id', TRUE), $data);
+			$this->User_model->update($this->input->post('id', TRUE), $data);
 			$this->session->set_flashdata('message', 'Update Record Success');
 			redirect(site_url('user'));
 		}
@@ -200,13 +188,11 @@ class User extends CI_Controller
 
 	public function _rules()
 	{
-		$this->form_validation->set_rules('nama_user', 'nama user', 'trim|required');
 		$this->form_validation->set_rules('username', 'username', 'trim|required');
 		// $this->form_validation->set_rules('password', 'password', 'trim|required');
 		$this->form_validation->set_rules('level', 'level id', 'trim|required');
-		$this->form_validation->set_rules('email', 'email', 'trim|required');
 		$this->form_validation->set_rules('photo', 'photo', 'trim');
-		$this->form_validation->set_rules('user_id', 'user_id', 'trim');
+		$this->form_validation->set_rules('id', 'id', 'trim');
 		$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
 	}
 
@@ -220,7 +206,7 @@ class User extends CI_Controller
 	{
 		$this->_rules();
 		if ($this->form_validation->run() == FALSE) {
-			$this->update($this->input->post('user_id', TRUE));
+			$this->update($this->input->post('id', TRUE));
 		} else {
 
 			$config['upload_path']      = './assets/assets/img/user';
@@ -231,7 +217,7 @@ class User extends CI_Controller
 			$this->upload->initialize($config);
 
 			if ($this->upload->do_upload("photo")) {
-				$id = $this->input->post('user_id');
+				$id = $this->input->post('id');
 				$row = $this->User_model->get_by_id($id);
 				$data = $this->upload->data();
 				$photo = $data['file_name'];
@@ -247,24 +233,20 @@ class User extends CI_Controller
 
 			if ($this->input->post('password') == '' || $this->input->post('password') == null) {
 				$data = array(
-					'nama_user' => $this->input->post('nama_user', TRUE),
 					'username' => $this->input->post('username', TRUE),
 					'level' => $this->input->post('level', TRUE),
-					'email' => $this->input->post('email', TRUE),
 					'photo' => $photo,
 				);
 			} else {
 				$data = array(
-					'nama_user' => $this->input->post('nama_user', TRUE),
 					'username' => $this->input->post('username', TRUE),
 					'password' => sha1($this->input->post('password', TRUE)),
 					'level' => $this->input->post('level', TRUE),
-					'email' => $this->input->post('email', TRUE),
 					'photo' => $photo,
 				);
 			}
 
-			$this->User_model->update($this->input->post('user_id', TRUE), $data);
+			$this->User_model->update($this->input->post('id', TRUE), $data);
 			$this->session->set_flashdata('message', 'Update Record Success');
 			redirect(site_url('user/edit_profile'));
 		}

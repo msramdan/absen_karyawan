@@ -40,3 +40,19 @@ function rupiah($angka = null)
 		return $hasil_rupiah;
 	}
 }
+
+function levelUser($level_id) {
+	if($level_id == 1) {
+		return 'Admin Aplikasi';
+	}
+
+	if($level_id == 2) {
+		return 'Owner';
+	}
+
+	if($level_id == 3) {
+		return 'Koordinator Lapangan';
+	}
+
+	return 'Karyawan';
+}

@@ -31,7 +31,7 @@ class Auth extends CI_Controller
 			if ($query->num_rows() > 0) {
 				$row = $query->row();
 				$params = array(
-					'userid' => $row->user_id,
+					'userid' => $row->id,
 					'level' => $row->level
 				);
 				$this->session->set_userdata($params);

@@ -15,10 +15,6 @@
 					<table id="" class="table  table-bordered table-hover table-td-valign-middle">
 						<thead>
 							<tr>
-								<td>Nama User <?php echo form_error('nama_user') ?></td>
-								<td><input type="text" class="form-control" name="nama_user" id="nama_user" placeholder="Nama User" value="<?php echo $nama_user; ?>" /></td>
-							</tr>
-							<tr>
 								<td>Username <?php echo form_error('username') ?></td>
 								<td><input type="text" class="form-control" name="username" id="username" placeholder="Username" value="<?php echo $username; ?>" /></td>
 							</tr>
@@ -39,13 +35,12 @@
 								<td>level <?php echo form_error('level') ?></td>
 								<td><select name="level" class="form-control theSelect">
 										<option value="">-- Pilih -- </option>
-										<option value="Admin" <?php echo $level == 'Admin' ? 'selected' : 'null' ?>>Admin</option>
-										<option value="User" <?php echo $level == 'User' ? 'selected' : 'null' ?>>User</option>
-									</select></td>
-							</tr>
-							<tr>
-								<td>Email <?php echo form_error('email') ?></td>
-								<td><input type="text" class="form-control" name="email" id="email" placeholder="Email" value="<?php echo $email; ?>" /></td>
+										<option value="1" <?= $level == 1 ? "selected" : ''; ?>>Admin</option>
+										<option value="2" <?= $level == 2 ? "selected" : ''; ?>>Owner</option>
+										<option value="3" <?= $level == 3 ? "selected" : ''; ?>>Koordinator Lapangan</option>
+										<option value="4" <?= $level == 4 ? "selected" : ''; ?>>Karyawan</option>
+									</select>
+								</td>
 							</tr>
 							<?php if ($this->uri->segment(2) == 'create' || $this->uri->segment(2) == 'create_action') { ?>
 								<tr>
@@ -70,7 +65,7 @@
 							<?php } ?>
 							<tr>
 								<td></td>
-								<td><input type="hidden" name="user_id" value="<?php echo $user_id; ?>" />
+								<td><input type="hidden" name="id" value="<?php echo $id; ?>" />
 									<button type="submit" class="btn btn-danger"><i class="fas fa-save"></i> <?php echo $button ?></button>
 									<a href="<?php echo site_url('user') ?>" class="btn btn-info"><i class="fas fa-undo"></i> Back</a>
 								</td>
@@ -88,7 +83,7 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title">Photo <?php echo $nama_user; ?></h4>
+				<h4 class="modal-title">Photo <?php echo $username; ?></h4>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
 			</div>
 			<div class="modal-body">

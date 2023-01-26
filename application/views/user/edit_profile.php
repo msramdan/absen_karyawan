@@ -15,8 +15,7 @@
 
 
 				<div class="profile-header-info">
-					<h4 class="mt-0 mb-1"><?= ucfirst($this->fungsi->user_login()->nama_user) ?></h4>
-					<p class="mb-2"><?= ucfirst($this->fungsi->user_login()->email) ?></p>
+					<h4 class="mt-0 mb-1"><?= ucfirst($this->fungsi->user_login()->username) ?></h4>
 					<a href="#" class="btn btn-xs btn-yellow">Edit Profile</a>
 				</div>
 
@@ -41,14 +40,7 @@
 					<form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
 						<table class="table table-profile align-middle">
 							<tbody>
-								<tr class="highlight">
-									<td class="field">Nama User <?php echo form_error('nama_user') ?></td>
-									<td><input type="text" class="form-control" name="nama_user" id="nama_user" placeholder="Nama User" value="<?php echo $nama_user; ?>" /></td>
-								</tr>
-								<tr class="divider">
-									<td colspan="2"></td>
-								</tr>
-								<input type="hidden" class="form-control" name="user_id" id="user_id" placeholder="user_id" value="<?php echo $user_id; ?>" />
+								<input type="hidden" class="form-control" name="id" id="id" placeholder="id" value="<?php echo $id; ?>" />
 								<input type="hidden" class="form-control" name="level" id="level" placeholder="level" value="<?php echo $level; ?>" />
 								<tr class="highlight">
 									<td class="field">Username <?php echo form_error('username') ?></td>
@@ -72,14 +64,6 @@
 									</tr>
 								<?php } ?>
 
-
-								<tr class="divider">
-									<td colspan="2"></td>
-								</tr>
-								<tr class="highlight">
-									<td class="field">Email <?php echo form_error('email') ?></td>
-									<td><input type="text" class="form-control" name="email" id="email" placeholder="Email" value="<?php echo $email; ?>" /></td>
-								</tr>
 								<tr class="divider">
 									<td colspan="2"></td>
 								</tr>
@@ -132,7 +116,7 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title">Photo <?php echo $nama_user; ?></h4>
+				<h4 class="modal-title">Photo <?php echo $username; ?></h4>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
 			</div>
 			<div class="modal-body">

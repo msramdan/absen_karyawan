@@ -5,7 +5,7 @@
 		public function login($post)
 		{
 			$this->db->select('*');
-			$this->db->from('user');
+			$this->db->from('tbl_users');
 			$this->db->where('username', $post['username']);
 			$this->db->where('password', sha1($post['password']));
 			$query = $this->db->get();
@@ -14,10 +14,10 @@
 
 		public function get($id = null)
 		{
-			$this->db->select('user.*');
-			$this->db->from('user');
+			$this->db->select('tbl_users.*');
+			$this->db->from('tbl_users');
 			if ($id != null) {
-				$this->db->where('user_id', $id);
+				$this->db->where('id', $id);
 			}
 			$query = $this->db->get();
 			return $query;
@@ -25,8 +25,8 @@
 
 		public function ubah_data($data, $id)
 		{
-			$this->db->where('user_id', $id);
-			$this->db->update('user', $data);
+			$this->db->where('id', $id);
+			$this->db->update('tbl_users', $data);
 		}
 
 		public function user_token($user_token)
