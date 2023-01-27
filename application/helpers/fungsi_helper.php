@@ -43,16 +43,16 @@ function rupiah($angka = null)
 
 function levelUser($level_id) {
 	if($level_id == 1) {
-		return 'Admin Aplikasi';
+		return 'admin';
 	}
 
 	if($level_id == 2) {
-		return 'Owner';
+		return 'owner';
 	}
 
 	if($level_id == 3) {
-		return 'Koordinator Lapangan';
+		return 'koordinator_lapangan';
 	}
 
-	return 'Karyawan';
+	return 'karyawan';
 }

@@ -60,6 +60,20 @@ class User_model extends CI_Model
 		$this->db->where($this->id, $id);
 		$this->db->delete($this->table);
 	}
+
+	//
+	function empty_user_id_on_tbl_karyawan($id_user)
+	{
+		$this->db->set('id_user', NULL);
+		$this->db->where('id_user', $id_user);
+		$this->db->update('tbl_karyawan');
+	}
+
+	function findDataKaryawanUseThisUserId($id_user)
+	{
+		$this->db->where('id_user', $id_user);
+		return $this->db->get('tbl_karyawan')->row();
+	}
 }
 
 /* End of file User_model.php */

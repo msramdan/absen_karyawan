@@ -36,7 +36,7 @@ foreach ($non_pk as $row) {
 }
 $string .= "\n\t    <tr><td></td><td><input type=\"hidden\" name=\"".$pk."\" value=\"<?php echo $".$pk."; ?>\" /> ";
 $string .= "\n\t    <button type=\"submit\" class=\"btn btn-danger\"><i class=\"fas fa-save\"></i> <?php echo \$button ?></button> ";
-$string .= "\n\t    <a href=\"<?php echo site_url('".$c_url."') ?>\" class=\"btn btn-info\"><i class=\"fas fa-undo\"></i> Kembali</a></td></tr>
+$string .= "\n\t    <a href=\"<?php echo site_url(levelUser(\$this->session->userdata('level')).'/".$c_url."') ?>\" class=\"btn btn-info\"><i class=\"fas fa-undo\"></i> Kembali</a></td></tr>
 </thead>";
 $string .= "\n\t</table></form>        </div>
 </div>

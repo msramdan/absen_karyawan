@@ -20,15 +20,15 @@ $string = "<div id=\"content\" class=\"app-content\">
                                     <div class='row'>
                                         <div class='col-md-9'>
                                             <div style=\"padding-bottom: 10px;\">
-        <?php echo anchor(site_url('" . $c_url . "/create'), '<i class=\"fas fa-plus-square\" aria-hidden=\"true\"></i> Tambah Data', 'class=\"btn btn-danger btn-sm tambah_data\"'); ?>";
+        <?php echo anchor(site_url(levelUser(\$this->session->userdata('level')).'/" . $c_url . "/create'), '<i class=\"fas fa-plus-square\" aria-hidden=\"true\"></i> Tambah Data', 'class=\"btn btn-danger btn-sm tambah_data\"'); ?>";
 if ($export_excel == '1') {
-	$string .= "\n\t\t<?php echo anchor(site_url('" . $c_url . "/excel'), '<i class=\"far fa-file-excel\" aria-hidden=\"true\"></i> Export Ms Excel', 'class=\"btn btn-success btn-sm export_data\"'); ?>";
+	$string .= "\n\t\t<?php echo anchor(site_url(levelUser(\$this->session->userdata('level')).'/" . $c_url . "/excel'), '<i class=\"far fa-file-excel\" aria-hidden=\"true\"></i> Export Ms Excel', 'class=\"btn btn-success btn-sm export_data\"'); ?>";
 }
 if ($export_word == '1') {
-	$string .= "\n\t\t<?php echo anchor(site_url('" . $c_url . "/word'), '<i class=\"fa fa-file-word-o\" aria-hidden=\"true\"></i> Export Ms Word', 'class=\"btn btn-primary btn-sm\"'); ?>";
+	$string .= "\n\t\t<?php echo anchor(site_url(levelUser(\$this->session->userdata('level')).'/" . $c_url . "/word'), '<i class=\"fa fa-file-word-o\" aria-hidden=\"true\"></i> Export Ms Word', 'class=\"btn btn-primary btn-sm\"'); ?>";
 }
 if ($export_pdf == '1') {
-	$string .= "\n\t\t<?php echo anchor(site_url('" . $c_url . "/pdf'), 'PDF', 'class=\"btn btn-primary\"'); ?>";
+	$string .= "\n\t\t<?php echo anchor(site_url(levelUser(\$this->session->userdata('level')).'/" . $c_url . "/pdf'), 'PDF', 'class=\"btn btn-primary\"'); ?>";
 }
 $string .= "
                 </div>
@@ -58,11 +58,11 @@ foreach ($non_pk as $row) {
 
 $string .= "\n\t\t\t<td style=\"text-align:center\" width=\"200px\">"
 	. "\n\t\t\t\t<?php "
-	. "\n\t\t\t\techo anchor(site_url('" . $c_url . "/read/'.encrypt_url($" . $c_url . "->" . $pk . ")),'<i class=\"fas fa-eye\" aria-hidden=\"true\"></i>','class=\"btn btn-success btn-sm read_data\"'); "
+	. "\n\t\t\t\techo anchor(site_url(levelUser(\$this->session->userdata('level')).'/" . $c_url . "/read/'.encrypt_url($" . $c_url . "->" . $pk . ")),'<i class=\"fas fa-eye\" aria-hidden=\"true\"></i>','class=\"btn btn-success btn-sm read_data\"'); "
 	. "\n\t\t\t\techo '  '; "
-	. "\n\t\t\t\techo anchor(site_url('" . $c_url . "/update/'.encrypt_url($" . $c_url . "->" . $pk . ")),'<i class=\"fas fa-pencil-alt\" aria-hidden=\"true\"></i>','class=\"btn btn-primary btn-sm update_data\"'); "
+	. "\n\t\t\t\techo anchor(site_url(levelUser(\$this->session->userdata('level')).'/" . $c_url . "/update/'.encrypt_url($" . $c_url . "->" . $pk . ")),'<i class=\"fas fa-pencil-alt\" aria-hidden=\"true\"></i>','class=\"btn btn-primary btn-sm update_data\"'); "
 	. "\n\t\t\t\techo '  '; "
-	. "\n\t\t\t\techo anchor(site_url('" . $c_url . "/delete/'.encrypt_url($" . $c_url . "->" . $pk . ")),'<i class=\"fas fa-trash-alt\" aria-hidden=\"true\"></i>','class=\"btn btn-danger btn-sm delete_data\" Delete','onclick=\"javasciprt: return confirm(\\'Are You Sure ?\\')\"'); "
+	. "\n\t\t\t\techo anchor(site_url(levelUser(\$this->session->userdata('level')).'/" . $c_url . "/delete/'.encrypt_url($" . $c_url . "->" . $pk . ")),'<i class=\"fas fa-trash-alt\" aria-hidden=\"true\"></i>','class=\"btn btn-danger btn-sm delete_data\" Delete','onclick=\"javasciprt: return confirm(\\'Are You Sure ?\\')\"'); "
 	. "\n\t\t\t\t?>"
 	. "\n\t\t\t</td>";
 

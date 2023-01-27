@@ -7,7 +7,7 @@ class Auth extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('user_m');
+		$this->load->model('Auth_model');
 	}
 
 	public function index()
@@ -26,16 +26,20 @@ class Auth extends CI_Controller
 	{
 		$post = $this->input->post(null, TRUE);
 		if (isset($post['login'])) {
-			$this->load->model('user_m');
-			$query = $this->user_m->login($post);
+			$this->load->model('Auth_model');
+			$query = $this->Auth_model->login($post);
 			if ($query->num_rows() > 0) {
 				$row = $query->row();
 				$params = array(
 					'userid' => $row->id,
-					'level' => $row->level
+					'level' => isset($row->level) ?? 4
 				);
+				
+				$this->load->helper('fungsi');
+				$levelusernya = levelUser($params['level']);
+
 				$this->session->set_userdata($params);
-				echo "<script>window.location='" . site_url('dashboard') . "'</script>";
+				echo "<script>window.location='". site_url($levelusernya.'/dashboard') ."'</script>";
 			} else {
 				$this->session->set_flashdata('gagal', 'Login gagal, username atau password salah');
 				redirect(site_url('auth'));
@@ -57,7 +61,7 @@ class Auth extends CI_Controller
 			'address'         => $this->input->post('address', true),
 			'email'         => $this->input->post('email', true),
 		);
-		$this->user_m->ubah_data($data, $id);
+		$this->Auth_model->ubah_data($data, $id);
 		echo "<script> alert('Data Berhasil diupdate')</script>";
 		echo "<script>window.location='" . site_url('auth/profile') . "'</script>";
 	}
@@ -68,7 +72,7 @@ class Auth extends CI_Controller
 			$data = array(
 				'password'          => sha1($this->input->post('password', true)),
 			);
-			$this->user_m->ubah_data($data, $id);
+			$this->Auth_model->ubah_data($data, $id);
 			echo "<script> alert('Data Password Berhasil diupdate')</script>";
 			echo "<script>window.location='" . site_url('auth/logout') . "'</script>";
 		} else {

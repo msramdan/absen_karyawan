@@ -58,7 +58,7 @@ $string .= "\n\t    );
             \$this->template->load('template','$c_url/$v_read', \$data);
         } else {
             \$this->session->set_flashdata('message', 'Record Not Found');
-            redirect(site_url('$c_url'));
+            redirect(site_url(site_url(levelUser(\$this->session->userdata('level')).'/'$c_url'));
         }
     }
 
@@ -66,7 +66,7 @@ $string .= "\n\t    );
     {
         \$data = array(
             'button' => 'Create',
-            'action' => site_url('$c_url/create_action'),";
+            'action' => site_url(levelUser(\$this->session->userdata('level')).'/'$c_url/create_action'),";
 foreach ($all as $row) {
 	$string .= "\n\t    '" . $row['column_name'] . "' => set_value('" . $row['column_name'] . "'),";
 }
@@ -90,7 +90,7 @@ $string .= "\n\t    );
 
             \$this->" . $m . "->insert(\$data);
             \$this->session->set_flashdata('message', 'Create Record Success');
-            redirect(site_url('$c_url'));
+            redirect(site_url(levelUser(\$this->session->userdata('level')).'/'$c_url'));
         }
     }
     
@@ -101,7 +101,7 @@ $string .= "\n\t    );
         if (\$row) {
             \$data = array(
                 'button' => 'Update',
-                'action' => site_url('$c_url/update_action'),";
+                'action' => site_url(levelUser(\$this->session->userdata('level')).'/'$c_url/update_action'),";
 foreach ($all as $row) {
 	$string .= "\n\t\t'" . $row['column_name'] . "' => set_value('" . $row['column_name'] . "', \$row->" . $row['column_name'] . "),";
 }
@@ -109,7 +109,7 @@ $string .= "\n\t    );
             \$this->template->load('template','$c_url/$v_form', \$data);
         } else {
             \$this->session->set_flashdata('message', 'Record Not Found');
-            redirect(site_url('$c_url'));
+            redirect(site_url(levelUser(\$this->session->userdata('level')).'/'$c_url'));
         }
     }
     
@@ -128,7 +128,7 @@ $string .= "\n\t    );
 
             \$this->" . $m . "->update(\$this->input->post('$pk', TRUE), \$data);
             \$this->session->set_flashdata('message', 'Update Record Success');
-            redirect(site_url('$c_url'));
+            redirect(site_url(levelUser(\$this->session->userdata('level')).'/'$c_url'));
         }
     }
     
@@ -139,10 +139,10 @@ $string .= "\n\t    );
         if (\$row) {
             \$this->" . $m . "->delete(decrypt_url(\$id));
             \$this->session->set_flashdata('message', 'Delete Record Success');
-            redirect(site_url('$c_url'));
+            redirect(site_url(levelUser(\$this->session->userdata('level')).'/'$c_url'));
         } else {
             \$this->session->set_flashdata('message', 'Record Not Found');
-            redirect(site_url('$c_url'));
+            redirect(site_url(levelUser(\$this->session->userdata('level')).'/'$c_url'));
         }
     }
 
