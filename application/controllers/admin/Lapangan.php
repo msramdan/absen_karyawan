@@ -9,7 +9,10 @@ class Lapangan extends CI_Controller
     {
         parent::__construct();
         is_login();
-        $this->load->model('Tbl_lapangan_model');
+        $this->load->model([
+			'Tbl_lapangan_model',
+			'Manage_users_model'
+		]);
         $this->load->library('form_validation');
     }
 
@@ -136,27 +139,70 @@ class Lapangan extends CI_Controller
         $row = $this->Tbl_lapangan_model->get_by_id(decrypt_url($id));
 
         if ($row) {
-            $this->Tbl_lapangan_model->delete(decrypt_url($id));
-            $this->session->set_flashdata('message', 'Delete Record Success');
-            redirect(site_url(levelUser($this->session->userdata('level')).'/lapangan'));
+			$deleteStatus = $this->Tbl_lapangan_model->delete(decrypt_url($id));
+
+			$this->session->set_flashdata('message', $deleteStatus);
+			redirect(site_url(levelUser($this->session->userdata('level')).'/lapangan'));
+			
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
             redirect(site_url(levelUser($this->session->userdata('level')).'/lapangan'));
         }
     }
 
+	public function assign_users($id) {
+		$row = $this->Tbl_lapangan_model->get_by_id(decrypt_url($id));
+		$users_not_assigned_yet = $this->Tbl_lapangan_model->get_users_which_is_not_assigned(decrypt_url($id));
+		$users_assigned = $this->Tbl_lapangan_model->get_users_assigned(decrypt_url($id));
+
+		if ($row) {
+			$data = array(
+				'button' => 'Assign Users',
+				'action' => site_url(levelUser($this->session->userdata('level')).'/lapangan/assign_users_action'),
+				'id' => set_value('id', $id),
+				'nama_lapangan' => set_value('nama_lapangan', $row->nama_lapangan),
+				'users_not_assigned_yet' => $users_not_assigned_yet,
+				'users_assigned' => $users_assigned,
+			);
+			$this->template->load('template','pengguna_berlevel/lapangan/tbl_lapangan_assign_users', $data);
+		} else {
+			$this->session->set_flashdata('message', 'Record Not Found');
+			redirect(site_url(levelUser($this->session->userdata('level')).'/lapangan'));
+		}
+	}
+
+	public function save_assigned_user() {
+		$id_lapangan = $this->input->post('lapangan_id');
+		$id_user = $this->input->post('user_id');
+		// $nama_lapangan = $this->input->post('nama_lapangan');
+		$this->Tbl_lapangan_model->kosongkan_assigned_user(decrypt_url($id_lapangan));
+		foreach ($id_user as $key => $value) {
+			$data = array(
+				'id_lapangan' => decrypt_url($id_lapangan),
+				'id_users' => decrypt_url($value),
+			);
+			$this->Tbl_lapangan_model->save_assigned_user($data);
+		}
+		$response = array(
+			'status' => 'success',
+			'message' => 'Berhasil menyimpan',
+		);
+
+		echo json_encode($response);
+	}
+
     public function _rules() 
     {
-	$this->form_validation->set_rules('nama_lapangan', 'nama lapangan', 'trim|required');
-	$this->form_validation->set_rules('latitude', 'latitude', 'trim|required');
-	$this->form_validation->set_rules('longitude', 'longitude', 'trim|required');
-	$this->form_validation->set_rules('radius_diizinkan', 'radius diizinkan', 'trim|required');
-	$this->form_validation->set_rules('jam_masuk_diizinkan', 'jam masuk diizinkan', 'trim|required');
-	$this->form_validation->set_rules('jam_keluar_diizinkan', 'jam keluar diizinkan', 'trim|required');
-	$this->form_validation->set_rules('petugas', 'petugas', 'trim|required');
+		$this->form_validation->set_rules('nama_lapangan', 'nama lapangan', 'trim|required');
+		$this->form_validation->set_rules('latitude', 'latitude', 'trim|required');
+		$this->form_validation->set_rules('longitude', 'longitude', 'trim|required');
+		$this->form_validation->set_rules('radius_diizinkan', 'radius diizinkan', 'trim|required');
+		$this->form_validation->set_rules('jam_masuk_diizinkan', 'jam masuk diizinkan', 'trim|required');
+		$this->form_validation->set_rules('jam_keluar_diizinkan', 'jam keluar diizinkan', 'trim|required');
+		$this->form_validation->set_rules('petugas', 'petugas', 'trim|required');
 
-	$this->form_validation->set_rules('id', 'id', 'trim');
-	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+		$this->form_validation->set_rules('id', 'id', 'trim');
+		$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }
 
 }

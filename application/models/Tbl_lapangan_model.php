@@ -61,8 +61,40 @@ class Tbl_lapangan_model extends CI_Model
     function delete($id)
     {
         $this->db->where($this->id, $id);
-        $this->db->delete($this->table);
+		$this->db->delete($this->table);
+		if($this->db->error()['code'] != 0) {
+			return $this->db->error()['message'];
+		} else {
+			return 'Delete Record Success';
+		}
     }
+
+	function get_users_assigned($id) {
+		$this->db->select('*')->from('tbl_users')->where('id IN (SELECT id_users FROM tbl_penempatan_karyawan WHERE id_lapangan = '.$id.')');
+		$query = $this->db->get();
+		return $query->result();
+	}
+
+	function get_users_which_is_not_assigned($id) {
+		$this->db->select('*')->from('tbl_users')->where('id NOT IN (SELECT id_users FROM tbl_penempatan_karyawan)');
+		$query = $this->db->get();
+		return $query->result();
+	}
+
+	function save_assigned_user($data) {
+		$this->db->insert('tbl_penempatan_karyawan', $data);
+	}
+
+	function kosongkan_assigned_user($id) {
+		$this->db->where('id_lapangan', $id);
+		$this->db->delete('tbl_penempatan_karyawan');
+	}
+
+	function count_users_assigned($id) {
+		$this->db->select('*')->from('tbl_users')->where('id IN (SELECT id_users FROM tbl_penempatan_karyawan)');
+		$query = $this->db->get();
+		return $query->num_rows();
+	}
 
 }
 

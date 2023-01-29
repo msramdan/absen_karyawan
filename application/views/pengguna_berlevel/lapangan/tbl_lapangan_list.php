@@ -38,6 +38,7 @@
                       <th>Radius Diizinkan</th>
                       <th>Jam Masuk Diizinkan</th>
                       <th>Jam Keluar Diizinkan</th>
+											<th>Total Karyawan</th>
                       <th>Petugas</th>
                       <th>Action</th>
                     </tr>
@@ -54,6 +55,7 @@
                       <td><?php echo $lapangan->radius_diizinkan ?></td>
                       <td><?php echo $lapangan->jam_masuk_diizinkan ?></td>
                       <td><?php echo $lapangan->jam_keluar_diizinkan ?></td>
+											<td><?php echo $this->db->get_where('tbl_penempatan_karyawan', ['id_lapangan' => $lapangan->id])->num_rows() ?></td>
                       <td><?php echo $lapangan->petugas ?></td>
                       <td style="text-align:center" width="200px">
                         <?php 
@@ -61,7 +63,9 @@
 				echo '  '; 
 				echo anchor(site_url(levelUser($this->session->userdata('level')).'/lapangan/update/'.encrypt_url($lapangan->id)),'<i class="fas fa-pencil-alt" aria-hidden="true"></i>','class="btn btn-primary btn-sm update_data"'); 
 				echo '  '; 
-				echo anchor(site_url(levelUser($this->session->userdata('level')).'/lapangan/delete/'.encrypt_url($lapangan->id)),'<i class="fas fa-trash-alt" aria-hidden="true"></i>','class="btn btn-danger btn-sm delete_data" Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); 
+				echo anchor(site_url(levelUser($this->session->userdata('level')).'/lapangan/assign_users/'.encrypt_url($lapangan->id)),'<i class="fas fa-tasks" aria-hidden="true"></i>','class="btn btn-secondary btn-sm"');
+				echo '  ';
+				echo anchor(site_url(levelUser($this->session->userdata('level')).'/lapangan/delete/'.encrypt_url($lapangan->id)),'<i class="fas fa-trash-alt" aria-hidden="true"></i>','class="btn btn-danger btn-sm delete_data" Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
 				?>
                       </td>
                     </tr>
