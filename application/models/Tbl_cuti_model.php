@@ -72,6 +72,12 @@ class Tbl_cuti_model extends CI_Model
 		return $this->db->get('tbl_users')->result();
 	}
 
+	function get_by_tanggal_user_id($tanggal,$user_id){
+		$query = $this->db->query("SELECT * FROM tbl_cuti WHERE tanggal = '$tanggal' AND users_id = '$user_id' AND (status = 'approved' OR status IS NULL)");
+		// var_dump($query->result());
+		return $query;
+	}
+
 }
 
 /* End of file Tbl_cuti_model.php */

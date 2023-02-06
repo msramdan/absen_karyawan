@@ -38,6 +38,10 @@ class Auth extends CI_Controller
 				$this->load->helper('fungsi');
 				$levelusernya = levelUser($params['level']);
 
+				if($levelusernya == 'karyawan') {
+					$params['lapangan_id'] = cek_asal_lapangan($params['userid']);
+				}
+
 				$this->session->set_userdata($params);
 				echo "<script>window.location='". site_url($levelusernya.'/dashboard') ."'</script>";
 			} else {

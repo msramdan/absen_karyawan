@@ -2,7 +2,7 @@
   <div class="col-md-6 ui-sortable">
     <div class="panel panel-inverse" data-sortable-id="form-stuff-1" data-init="true">
       <div class="panel-heading ui-sortable-handle">
-        <h4 class="panel-title">Tbl_cuti Read</h4>
+        <h4 class="panel-title">Tbl_izin Read</h4>
         <div class="panel-heading-btn">
           <a href="javascript:;" class="btn btn-xs btn-icon btn-default" data-toggle="panel-expand"
             data-bs-original-title="" title="" data-tooltip-init="true"><i class="fa fa-expand"></i></a>
@@ -32,7 +32,7 @@
 						<td>Lampiran</td>
 						<td>
 							<?php if ($lampiran != null) { ?>
-							<a href="<?php echo base_url('assets/assets/img/user/cuti/'.$lampiran) ?>" target="_blank">Lihat Lampiran</a>
+							<a href="<?php echo base_url('assets/assets/img/user/izin/'.$lampiran) ?>" target="_blank">Lihat Lampiran</a>
 							<?php } else { ?>
 							-
 							<?php } ?>
@@ -52,7 +52,7 @@
           </tr>
           <tr>
             <td></td>
-            <td><a href="<?php echo site_url(levelUser($this->session->userdata('level')).'/cuti') ?>"
+            <td><a href="<?php echo site_url(levelUser($this->session->userdata('level')).'/izin') ?>"
                 class="btn btn-default">Cancel</a></td>
           </tr>
         </table>

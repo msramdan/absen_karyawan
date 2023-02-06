@@ -1,9 +1,9 @@
 <div id="content" class="app-content">
-  <div class="col ui-sortable">
+  <div class="col-md-6 ui-sortable">
     <div class="panel panel-inverse" data-sortable-id="form-stuff-1" style="" data-init="true">
 
       <div class="panel-heading ui-sortable-handle">
-        <h4 class="panel-title">KELOLA DATA TBL_CUTI</h4>
+        <h4 class="panel-title">KELOLA DATA TBL_IZIN</h4>
         <div class="panel-heading-btn">
           <a href="javascript:;" class="btn btn-xs btn-icon btn-default" data-toggle="panel-expand"
             data-bs-original-title="" title="" data-tooltip-init="true"><i class="fa fa-expand"></i></a>
@@ -19,7 +19,7 @@
 
         <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
           <thead>
-            <table id="data-table-default" class="table table-bordered table-hover table-td-valign-middle">
+            <table id="data-table-default" class="table  table-bordered table-hover table-td-valign-middle">
               <tr>
                 <td>Users Id <?php echo form_error('users_id') ?></td>
                 <td>
@@ -30,12 +30,8 @@
               </tr>
               <tr>
                 <td>Tanggal <?php echo form_error('tanggal') ?></td>
-                <td>
-									<div class="input-group">
-										<input type="date" name="tanggal" id="tanggal" class="form-control" value="<?php echo $tanggal; ?>" />
-										<div class="input-group-text"><i class="fa fa-calendar"></i></div>
-									</div>
-								</td>
+                <td><input type="date" class="form-control" name="tanggal" id="tanggal" placeholder="Tanggal"
+                    value="<?php echo $tanggal; ?>" /></td>
               </tr>
 
               <tr>
@@ -51,7 +47,7 @@
 										if($button == 'Update' && $lampiran != NULL) {
 											?>
 												<br>
-												<a href="<?php echo base_url('assets/assets/img/user/cuti/'.$lampiran) ?>" target="_blank">Lihat Lampiran</a>
+												<a href="<?php echo base_url('assets/assets/img/user/izin/'.$lampiran) ?>" target="_blank">Lihat Lampiran</a>
 												<input type="hidden" name="lampiran_old" value="<?php echo $lampiran; ?>" />
 											<?php
 										}
@@ -63,7 +59,7 @@
                 <td><input type="hidden" name="id" value="<?php echo $id; ?>" />
                   <button type="submit" class="btn btn-danger"><i class="fas fa-save"></i>
                     <?php echo $button ?></button>
-                  <a href="<?php echo site_url(levelUser($this->session->userdata('level')).'/cuti') ?>"
+                  <a href="<?php echo site_url(levelUser($this->session->userdata('level')).'/izin') ?>"
                     class="btn btn-info"><i class="fas fa-undo"></i> Kembali</a>
                 </td>
               </tr>

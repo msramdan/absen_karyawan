@@ -16,7 +16,7 @@
   </a>
 </div>
 <div class="menu-item">
-  <a href="<?= base_url() ?>karyawan/lapangan" class="menu-link">
+  <a href="<?= base_url() ?>karyawan/cuti" class="menu-link">
     <div class="menu-icon">
       <i class="fas fa-map-marked"></i>
     </div>
@@ -32,7 +32,7 @@
   </a>
 </div>
 <div class="menu-item">
-  <a href="<?= base_url() ?>karyawan/izin" class="menu-link">
+  <a href="<?= base_url() ?>karyawan/sakit" class="menu-link">
     <div class="menu-icon">
       <i class="fa fa-calendar"></i>
     </div>

@@ -22,6 +22,7 @@
   <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css"
     integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
+		<link href="<?= base_url().'assets/assets/plugins/bootstrap-daterangepicker/daterangepicker.css' ?>" rel="stylesheet" />
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="<?= base_url() ?>assets/assets/plugins/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="<?= base_url() ?>assets/assets/plugins/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
@@ -198,11 +199,14 @@
 		<script type="text/javascript" src="<?php echo base_url(); ?>assets/assets/js/sweetalert.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/assets/js/sweetalert.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script> <!-- untuk sweet alret -->
+		<script src="<?= base_url().'assets/assets/plugins/moment/min/moment.min.js' ?>"></script>
+		<script src="<?= base_url().'assets/assets/plugins/bootstrap-daterangepicker/daterangepicker.js' ?>"></script>
     <script src="<?= base_url() ?>assets/assets/js/app.min.js" type="beba54df5f87d24c2458d535-text/javascript"></script>
     <script src="<?= base_url() ?>assets/assets/js/rocket-loader.min.js" data-cf-settings="beba54df5f87d24c2458d535-|49"
       defer=""></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/assets/js/sweetalert.js"></script>
     <script src="<?php echo base_url(); ?>assets/assets/js/dataflash.js"></script>
+		
 
 </body>
 

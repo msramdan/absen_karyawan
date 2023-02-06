@@ -30,3 +30,5 @@ assets/assets/img/user/*.jpg
 *.sublime-project
 /tests/tests/
 /tests/results/
+
+assets/assets/img/bukti_absen/*

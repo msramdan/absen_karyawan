@@ -40,6 +40,14 @@
   </a>
 </div>
 <div class="menu-item">
+  <a href="<?= base_url() ?>admin/sakit" class="menu-link">
+    <div class="menu-icon">
+      <i class="fa fa-calendar"></i>
+    </div>
+    <div class="menu-text">Kelola Data Sakit</div>
+  </a>
+</div>
+<div class="menu-item">
   <a href="<?= base_url() ?>admin/manage_users" class="menu-link">
     <div class="menu-icon">
       <i class="fa fa-users"></i>
